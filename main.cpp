@@ -1,4 +1,4 @@
-// COMSC-210 | Lab 12 | Barsbek
+// COMSC-210 | Lab 13 | Barsbek
 // This program reads 50 scores from an external file into a std::array
 // and computes statistics such as highest, lowest, average, and median.
 // Note: No global variables were used. The size = 50  is specified
@@ -13,10 +13,10 @@
 
 using namespace std;
 
-int findHighestScore(const array<int, 50>& arr);
-double findAvgScore(const array<int, 50>& arr);
-int findLowestScore(const array<int, 50>& arr);
-double findMedianScore(array<int, 50> arr);
+int findHighestScore(const vector<int>& arr);
+double findAvgScore(const vector<int>& vec);
+int findLowestScore(const vector<int>& vec);
+double findMedianScore(vector<int> vec);
 
 int main() {
     const int MAX_AMOUNT{50};
@@ -26,9 +26,12 @@ int main() {
         return 1;
     }
 
-    array<int, MAX_AMOUNT> leaderboard{};
-    for (int& score : leaderboard)  // To input data into array
+    vector<int> leaderboard(MAX_AMOUNT);
+    for (int i{0}; i < MAX_AMOUNT; ++i) {
+        int score;
         fileInput >> score;
+        leaderboard.push_back(score);
+    }
 
     // Test
     cout << "Highest score: " << findHighestScore(leaderboard) << '\n';
@@ -40,11 +43,11 @@ int main() {
     return 0;
 }
 
-int findHighestScore(const array<int, 50>& arr) {
+int findHighestScore(const vector<int>& arr) {
     return *max_element(arr.begin(), arr.end());
 }
 
-int findLowestScore(const array<int, 50>& arr) {
+int findLowestScore(const vector<int>& arr) {
     return *min_element(arr.begin(), arr.end());
 }
 
