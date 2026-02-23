@@ -13,7 +13,7 @@
 
 using namespace std;
 
-int findHighestScore(const vector<int>& arr);
+int findHighestScore(const vector<int>& vec);
 double findAvgScore(const vector<int>& vec);
 int findLowestScore(const vector<int>& vec);
 double findMedianScore(vector<int> vec);
@@ -26,7 +26,7 @@ int main() {
         return 1;
     }
 
-    vector<int> leaderboard(MAX_AMOUNT);
+    vector<int> leaderboard{};
     for (int i{0}; i < MAX_AMOUNT; ++i) {
         int score;
         fileInput >> score;
@@ -43,30 +43,30 @@ int main() {
     return 0;
 }
 
-int findHighestScore(const vector<int>& arr) {
-    return *max_element(arr.begin(), arr.end());
+int findHighestScore(const vector<int>& vec) {
+    return *max_element(vec.begin(), vec.end());
 }
 
-int findLowestScore(const vector<int>& arr) {
-    return *min_element(arr.begin(), arr.end());
+int findLowestScore(const vector<int>& vec) {
+    return *min_element(vec.begin(), vec.end());
 }
 
-double findAvgScore(const array<int, 50>& arr) {
+double findAvgScore(const vector<int>& vec) {
     double sumInitial{0.0};
-    return accumulate(arr.begin(), arr.end(), sumInitial) / arr.size();
+    return accumulate(vec.begin(), vec.end(), sumInitial) / vec.size();
 }
 
 // findMedianScore() calculates the median of an array
-// arguments: array<int, 50> arr
+// arguments: vector<int> vec
 // return: median value as double
-double findMedianScore(array<int, 50> arr) {
-    sort(arr.begin(), arr.end()); // Sort a copy of the arr for median calculation
-    size_t middle{arr.size() / 2}; // Middle index of the arr
+double findMedianScore(vector<int> vec) {
+    sort(vec.begin(), vec.end()); // Sort a copy of the arr for median calculation
+    size_t middle{vec.size() / 2}; // Middle index of the arr
 
     // If number of elements is even, average the two middle values
-    if (arr.size() % 2 == 0) {
-        return (arr.at(middle - 1) + arr.at(middle)) / 2.0;
+    if (vec.size() % 2 == 0) {
+        return (vec.at(middle - 1) + vec.at(middle)) / 2.0;
     } else {
-        return arr.at(middle); // If odd, returns the middle val
+        return vec.at(middle); // If odd, returns the middle val
     }
 }
